@@ -1,0 +1,16 @@
+PODS:
+  - rms-mobile-xdk-cocoapods-swift (0.1.0)
+
+DEPENDENCIES:
+  - rms-mobile-xdk-cocoapods-swift (from `../`)
+
+EXTERNAL SOURCES:
+  rms-mobile-xdk-cocoapods-swift:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  rms-mobile-xdk-cocoapods-swift: 82e00331bf74fc11ef707e4df4aac191460b84e7
+
+PODFILE CHECKSUM: 7a574aa4fca502170797f29a46c34e908a86596f
+
+COCOAPODS: 1.11.3
