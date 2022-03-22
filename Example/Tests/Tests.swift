@@ -1,5 +1,5 @@
 import XCTest
-import rms-mobile-xdk-cocoapods-swift
+//import rms-mobile-xdk-cocoapods-swift
 
 class Tests: XCTestCase {
     
