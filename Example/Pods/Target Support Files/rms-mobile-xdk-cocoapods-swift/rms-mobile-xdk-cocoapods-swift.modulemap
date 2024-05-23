@@ -1,6 +1,0 @@
-framework module rms_mobile_xdk_cocoapods_swift {
-  umbrella header "rms-mobile-xdk-cocoapods-swift-umbrella.h"
-
-  export *
-  module * { export * }
-}
