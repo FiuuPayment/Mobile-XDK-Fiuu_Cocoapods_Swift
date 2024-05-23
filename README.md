@@ -18,25 +18,9 @@ This is the complete and functional Razer Merchant Services iOS payment module t
 
 ## Installation
 
-### For Objective-C
-    
-    Step 1 - Drag and drop MOLPayXDK.framework into the application project folder to perform all imports. Please copy both files into the project.
-    
-    Step 2 - Add #import <MOLPayXDK/MOLPayLib.h>
-    
-    Step 3 - Add <MOLPayLibDelegate> to @interface
-    
-    Step 4 - Add -(void)transactionResult:(NSDictionary *)result for all delegate callbacks
-    
-    Step 5 - Add 'App Transport Security Settings > Allow Arbitrary Loads > YES' to the application project info.plist
-    
-    Step 6 - Add 'NSPhotoLibraryUsageDescription' > 'Payment images' to the application project info.plist
-
-    Step 7 - Add 'NSPhotoLibraryAddUsageDescription' > 'Payment images' to the application project info.plist
-
 ### For Swift
     
-    Step 1 - Drag and drop MOLPayXDK.bundle and MOLPayXDK.framework into the application project folder to perform all imports. Please copy both files into the project.
+    Step 1 - Drag and drop MOLPayXDK.framework into the application project folder to perform all imports. Please copy both files into the project.
     
     Step 2 - Create a bridging header file for MOLPay XDK Obj-c framework.
     Then add the bridging header file to the Swift Compiler under Objective-C Bridging Header. (Refer https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html)
@@ -54,102 +38,6 @@ This is the complete and functional Razer Merchant Services iOS payment module t
     Step 8 - Add 'NSPhotoLibraryAddUsageDescription' > 'Payment images' to the application project info.plist
 
 ## Prepare the Payment detail object
-
-### For Objective-C
-
-    NSDictionary * paymentRequestDict = @{
-        // Optional, REQUIRED when use online Sandbox environment and account credentials.
-        @"mp_dev_mode": [NSNumber numberWithBool:NO],
-    
-        // Mandatory String. Values obtained from MOLPay.
-        @"mp_username": @"username",
-        @"mp_password": @"password",
-        @"mp_merchant_ID": @"merchantid",
-        @"mp_app_name": @"appname",
-        @"mp_verification_key": @"vkey123",
-    
-        // Mandatory String. Payment values.
-        @"mp_amount": @"1.10", // Minimum 1.01
-        @"mp_order_ID": @"orderid123",
-        @"mp_currency": @"MYR",
-        @"mp_country": @"MY",
-        
-        // Optional, but required payment values. User input will be required when values not passed.
-        @"mp_channel": @"multi", // Use 'multi' for all available channels option. For individual channel seletion, please refer to https://github.com/FiuuPayment/Mobile-XDK-Fiuu_Examples/blob/master/channel-list.md.
-        @"mp_bill_description": @"billdesc",
-        @"mp_bill_name": @"billname",
-        @"mp_bill_email": @"email@domain.com",
-        @"mp_bill_mobile": @"+1234567",
-    
-        // Optional, allow channel selection. 
-        @"mp_channel_editing": [NSNumber numberWithBool:NO],
-    
-        // Optional, allow billing information editing.
-        @"mp_editing_enabled": [NSNumber numberWithBool:NO],
-    
-        // Optional, for Escrow.
-        @"mp_is_escrow": @"0", // Put "1" to enable escrow
-    
-        // Optional, for credit card BIN restrictions and campaigns.
-        @"mp_bin_lock": [NSArray arrayWithObjects:@"414170", @"414171", nil],
-    
-        // Optional, for mp_bin_lock alert error.
-        @"mp_bin_lock_err_msg": @"Only UOB allowed",
-        
-        // WARNING! FOR TRANSACTION QUERY USE ONLY, DO NOT USE THIS ON PAYMENT PROCESS.
-        // Optional, provide a valid cash channel transaction id here will display a payment instruction screen. Required if mp_request_type is 'Receipt'.
-        @"mp_transaction_id": @"",
-        // Optional, use 'Receipt' for Cash channels, and 'Status' for transaction status query.
-        @"mp_request_type": @"",
-    
-        // Optional, use this to customize the UI theme for the payment info screen, the original XDK custom.css file can be obtained at https://github.com/FiuuPayment/Mobile-XDK-Fiuu_Examples/blob/master/custom.css.
-        @"mp_custom_css_url": [[NSBundle mainBundle] pathForResource:@"custom.css" ofType:nil],
-    
-        // Optional, set the token id to nominate a preferred token as the default selection, set "new" to allow new card only.
-        @"mp_preferred_token": @"",
-    
-        // Optional, credit card transaction type, set "AUTH" to authorize the transaction.
-        @"mp_tcctype": @"",
-    
-        // Optional, required valid credit card channel, set true to process this transaction through the recurring api, please refer the MOLPay Recurring API pdf. 
-        @"mp_is_recurring": [NSNumber numberWithBool:NO],
-    
-        // Optional, show nominated channels.
-        @"mp_allowed_channels": [NSArray arrayWithObjects:@"credit", @"credit3", nil],
-    
-        // Optional, simulate offline payment, set boolean value to enable. 
-        @"mp_sandbox_mode": [NSNumber numberWithBool:YES],
-    
-        // Optional, required a valid mp_channel value, this will skip the payment info page and go direct to the payment screen.
-        @"mp_express_mode": [NSNumber numberWithBool:YES],
-    
-        // Optional, extended email format validation based on W3C standards.
-        @"mp_advanced_email_validation_enabled": [NSNumber numberWithBool:YES],
-    
-        // Optional, extended phone format validation based on Google i18n standards.
-        @"mp_advanced_phone_validation_enabled": [NSNumber numberWithBool:YES],
-    
-        // Optional, explicitly force disable user input.
-        @"mp_bill_name_edit_disabled": [NSNumber numberWithBool:YES],
-        @"mp_bill_email_edit_disabled": [NSNumber numberWithBool:YES],
-        @"mp_bill_mobile_edit_disabled": [NSNumber numberWithBool:YES],
-        @"mp_bill_description_edit_disabled": [NSNumber numberWithBool:YES],
-    
-        // Optional, EN, MS, VI, TH, FIL, MY, KM, ID, ZH.
-        @"mp_language": @"EN",
-    
-        // Optional, Cash channel payment request expiration duration in hour.
-        @"mp_cash_waittime": @"48",
-        
-        // Optional, allow bypass of 3DS on some credit card channels.
-        @"mp_non_3DS": [NSNumber numberWithBool:YES],
-    
-        // Optional, disable card list option.
-        @"mp_card_list_disabled": [NSArray arrayWithObjects:@"credit", nil],
-    
-        // Optional for channels restriction, this option has less priority than mp_allowed_channels.
-        @"mp_disabled_channels": [NSArray arrayWithObjects:@"credit", nil]
-    };
 
 ### For Swift
 
@@ -249,24 +137,15 @@ This is the complete and functional Razer Merchant Services iOS payment module t
 
 ## Start the payment module
 
-### For Objective-C
-    MOLPayLib mp = [[MOLPayLib alloc] initWithDelegate:self andPaymentDetails:paymentRequestDict];
-
 ### For Swift
     let mp = MOLPayLib(delegate:self, andPaymentDetails: paymentRequestDict)
 
 ## Show the payment UI
 
-### For Objective-C
-    [self presentViewController:mp animated:NO completion:nil];
-
 ### For Swift
     self.present(nc, animated: false) {}
 
 ## Close the payment module
-
-### For Objective-C
-    [mp closemolpay];
 
 ### For Swift
     mp.closemolpay()
@@ -274,9 +153,6 @@ This is the complete and functional Razer Merchant Services iOS payment module t
     * Note: The host application needs to implement the MOLPay payment module manually upon getting a final callback from the close event.
 
 ## Payment module callback
-
-### For Objective-C
-    - (void)transactionResult: (NSDictionary *)result
 
 ### For Swift
     func transactionResult(_ result: [AnyHashable: Any]!) {}
