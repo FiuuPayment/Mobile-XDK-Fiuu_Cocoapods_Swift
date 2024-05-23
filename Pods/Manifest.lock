@@ -1,0 +1,16 @@
+PODS:
+  - fiuu-mobile-xdk-cocoapods (3.34.0)
+
+DEPENDENCIES:
+  - fiuu-mobile-xdk-cocoapods
+
+SPEC REPOS:
+  trunk:
+    - fiuu-mobile-xdk-cocoapods
+
+SPEC CHECKSUMS:
+  fiuu-mobile-xdk-cocoapods: cf61335597ca8cc7f228058401eeb9861cb05d66
+
+PODFILE CHECKSUM: e64379cf22c21e9cf7a4fecc62e62da3dc6ee5d2
+
+COCOAPODS: 1.14.3
